@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                  icon:Icon(Icons.add)
              ),
              
-             Image.asset('Images/b.jpg')
+             Image.asset('images/b.jpg')
 
 
            ],
