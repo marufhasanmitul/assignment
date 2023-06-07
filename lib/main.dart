@@ -190,6 +190,16 @@ class HomeScreen extends StatelessWidget {
 
                  child: Text('Sign In',style: TextStyle(color: Colors.white),),
                  onPressed: (){},
+               ),
+               TextButton(
+                 style: TextButton.styleFrom(
+                     backgroundColor: Colors.green,
+                     elevation: 5,
+                     padding: EdgeInsets.symmetric(horizontal: 100,vertical: 10)
+                 ),
+
+                 child: Text('Sign In',style: TextStyle(color: Colors.white),),
+                 onPressed: (){},
                )
 
 
