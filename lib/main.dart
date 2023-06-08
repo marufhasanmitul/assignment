@@ -27,74 +27,29 @@ class HomeActivity extends StatelessWidget{
      appBar: AppBar(
        title:Text('Home') ,
      ),
-
-     body: Center(
-       child: Column(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: [
-           ElevatedButton(onPressed: (){
-             Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1('This is  Form Home text') ));
-           }, child: Text('Go Activity 1')),
-           ElevatedButton(onPressed: (){
-             Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2('This is Home Data') ));
-           }, child: Text('Go Activity 2')),
-         ],
+     body:Center(
+       child: Padding(
+         padding: const EdgeInsets.all(15.0),
+         child: Card(
+           shape: RoundedRectangleBorder(
+             borderRadius: BorderRadius.circular(20),
+           ),
+           elevation: 60,
+           color: Colors.green,
+           shadowColor: Colors.yellow,
+           child: SizedBox(
+               height: 200,
+               width: 200,
+               child: Center(child: Text("This is a Card",style: TextStyle(color: Colors.white),))
+           ),
+         ),
        ),
-     ),
+     ) ,
+
+
    );
 
 
   }
 }
 
-class Activity1 extends StatelessWidget{
-  String msg;
-    Activity1(
-      this.msg,
-      {super.key}
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:Text(msg),
-
-      ),
-
-      body:Center(
-        child: ElevatedButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2('This is Home Data')));
-          },
-          child: Text('Activity 2 Go'),
-
-        ),
-      )  ,
-    );
-
-
-  }
-}
-
-class Activity2 extends StatelessWidget{
-  String msg;
-  Activity2(
-      this.msg,
-      {super.key}
-      );
-
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:Text(msg) ,
-      ),
-    );
-
-
-  }
-}
