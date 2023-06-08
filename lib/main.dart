@@ -1,8 +1,4 @@
-import 'package:assignment/Fragment/Favorite.dart';
-import 'package:assignment/Fragment/Home.dart';
-import 'package:assignment/Fragment/Profile.dart';
-import 'package:assignment/Fragment/Search.dart';
-import 'package:assignment/Fragment/Social.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //Source code Follow
@@ -25,45 +21,79 @@ class MyApp extends StatelessWidget{
 }
 
 class HomeActivity extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+   return Scaffold(
+     appBar: AppBar(
+       title:Text('Home') ,
+     ),
+
+     body: Center(
+       child: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+           ElevatedButton(onPressed: (){
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1('This is  Form Home text') ));
+           }, child: Text('Go Activity 1')),
+           ElevatedButton(onPressed: (){
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2('This is Home Data') ));
+           }, child: Text('Go Activity 2')),
+         ],
+       ),
+     ),
+   );
+
+
+  }
+}
+
+class Activity1 extends StatelessWidget{
+  String msg;
+    Activity1(
+      this.msg,
+      {super.key}
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title:Text(msg),
+
+      ),
+
+      body:Center(
+        child: ElevatedButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2('This is Home Data')));
+          },
+          child: Text('Activity 2 Go'),
+
+        ),
+      )  ,
+    );
+
+
+  }
+}
+
+class Activity2 extends StatelessWidget{
+  String msg;
+  Activity2(
+      this.msg,
+      {super.key}
+      );
 
 
 
 
   @override
   Widget build(BuildContext context) {
-   return DefaultTabController(
-       length: 5,
-       child: Scaffold(
-         appBar: AppBar(
-           title: Text('Tab Layout'),
-           centerTitle: true,
-           bottom: TabBar(
-             isScrollable: true,
-             tabs: [
-               Tab(icon: Icon(Icons.home),text: "Home",),
-               Tab(icon: Icon(Icons.search),text: "Search",),
-               Tab(icon: Icon(Icons.person),text: "Profile",),
-               Tab(icon: Icon(Icons.favorite),text: "favorite",),
-               Tab(icon: Icon(Icons.social_distance),text: "Social",),
-
-
-             ],
-           ),
-         ),
-         body: TabBarView(
-           children: [
-             Home(),
-             Search(),
-             Profile(),
-             Favorite(),
-             Social()
-
-
-           ],
-         ),
-       )
-
-   );
+    return Scaffold(
+      appBar: AppBar(
+        title:Text(msg) ,
+      ),
+    );
 
 
   }
