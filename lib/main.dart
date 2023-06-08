@@ -27,22 +27,26 @@ class HomeActivity extends StatelessWidget{
      appBar: AppBar(
        title:Text('Home') ,
      ),
-     body:Center(
-       child: Padding(
-         padding: const EdgeInsets.all(15.0),
-         child: Card(
-           shape: RoundedRectangleBorder(
-             borderRadius: BorderRadius.circular(20),
+     body:
+     Center(
+       child: Column(
+         crossAxisAlignment: CrossAxisAlignment.center,
+         children: [
+           CircularProgressIndicator(
+              color: Colors.purple,
+              strokeWidth: 5,
+              backgroundColor: Colors.grey,
            ),
-           elevation: 60,
-           color: Colors.green,
-           shadowColor: Colors.yellow,
-           child: SizedBox(
-               height: 200,
-               width: 200,
-               child: Center(child: Text("This is a Card",style: TextStyle(color: Colors.white),))
+           SizedBox(
+             height: 100,
+             width: 50,
            ),
-         ),
+           LinearProgressIndicator(
+              minHeight: 10,
+           )
+
+
+         ],
        ),
      ) ,
 
