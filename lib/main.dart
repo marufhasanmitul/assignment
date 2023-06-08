@@ -48,8 +48,13 @@ class HomeActivity extends StatelessWidget{
 
       body:
       //ListView
-      ListView.builder(
+      GridView.builder(
           itemCount: MyItem.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 1,
+            childAspectRatio: 1.2
+          ),
           itemBuilder: (context,index){
             return GestureDetector(
               onTap: (){
@@ -62,7 +67,7 @@ class HomeActivity extends StatelessWidget{
                 child: Image.network(MyItem[index]['img']!,fit: BoxFit.fill,),
               ),
             );
-          }
+          },
 
       )
 
