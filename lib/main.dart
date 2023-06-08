@@ -43,6 +43,8 @@ class HomeActivity extends StatelessWidget{
            ),
            LinearProgressIndicator(
               minHeight: 10,
+              backgroundColor: Colors.red,
+             color: Colors.purple,
            )
 
 
