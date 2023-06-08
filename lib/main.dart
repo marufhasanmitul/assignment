@@ -21,11 +21,20 @@ class MyApp extends StatelessWidget{
 
 class HomeActivity extends StatelessWidget{
 
-  MySnackbar(message,context){
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message))
+  var MyItem=[
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Maruf Hasan"},
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Jamal"},
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Kamal"},
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Rofiq"},
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Shofiq"},
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Rasel"},
+    {"img":"https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png","title":"Rakib"}
+  ];
+  
+  mySnacbar(context,msg){
+    return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(msg))
     );
-
   }
 
 
@@ -35,34 +44,29 @@ class HomeActivity extends StatelessWidget{
       //Appbar=============
       appBar: AppBar(
         title: Text("My First app"),
-        titleSpacing: 0,
-        toolbarHeight: 70,
-        toolbarOpacity: 1,
-        elevation: 10,
-        backgroundColor: Colors.green,
-        actions: [
-          IconButton(
-              onPressed: () {
-                MySnackbar("I am comments", context);
-              },
-              icon: Icon(Icons.comment)),
-          IconButton(
-              onPressed: () {
-                MySnackbar("I am Search", context);
-              },
-              icon: Icon(Icons.search)),
-          IconButton(
-              onPressed: () {
-                MySnackbar("I am Setting", context);
-              },
-              icon: Icon(Icons.settings)),
-          IconButton(
-              onPressed: () {
-                MySnackbar("I am Email", context);
-              },
-              icon: Icon(Icons.email)),
-        ],
       ),
+
+      body:
+      //ListView
+      ListView.builder(
+          itemCount: MyItem.length,
+          itemBuilder: (context,index){
+            return GestureDetector(
+              onTap: (){
+                mySnacbar(context, MyItem[index]['title']);
+              },
+              child: Container(
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                height:200,
+                child: Image.network(MyItem[index]['img']!,fit: BoxFit.fill,),
+              ),
+            );
+          }
+
+      )
+
+      ,
 
 
 
