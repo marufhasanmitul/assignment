@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget{
 }
 
 class HomeActivity extends StatelessWidget{
+  TextEditingController _emailTextEditorController=TextEditingController();
+  TextEditingController _userNameEditTextController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -28,29 +31,136 @@ class HomeActivity extends StatelessWidget{
        title:Text('Home') ,
      ),
      body:
-     Center(
-       child: Column(
-         crossAxisAlignment: CrossAxisAlignment.center,
-         children: [
-           CircularProgressIndicator(
-              color: Colors.purple,
-              strokeWidth: 5,
-              backgroundColor: Colors.grey,
+     Column(
+       children: [
+         Padding(
+           padding: const EdgeInsets.all(15.0),
+           child: TextField(
+             controller: _emailTextEditorController,
+             decoration: InputDecoration(
+               label:Text('Email'),
+               border: OutlineInputBorder(
+                 borderSide: BorderSide(color: Colors.purple),
+               )
+             ),
            ),
-           SizedBox(
-             height: 100,
-             width: 50,
+         ),
+         Padding(
+           padding: const EdgeInsets.all(15.0),
+           child: TextField(
+             controller: _userNameEditTextController,
+             decoration: InputDecoration(
+                 label:Text('User Name',style: TextStyle(
+                   color: Colors.purple
+                 ),),
+                 hintText: 'Enter Your User name',
+                 focusedBorder: OutlineInputBorder(
+                   borderSide: BorderSide(color: Colors.purple,width: 2)
+                 ),
+                 enabledBorder: OutlineInputBorder(
+                   borderSide:BorderSide(
+                     color: Colors.red,
+                     width: 3
+
+                   )
+                 ),
+                 border: OutlineInputBorder(
+                   borderSide: BorderSide(color: Colors.purple),
+                 )
+             ),
            ),
-           LinearProgressIndicator(
-              minHeight: 10,
-              backgroundColor: Colors.red,
-             color: Colors.purple,
-           )
+         ),
+         ElevatedButton(
+             onPressed: (){
+               print(_emailTextEditorController.text);
+               _emailTextEditorController.clear();
+             },
+             child:Text('Submit')
+         ),
+
+         ListTile(
+           onTap: (){
+             print("Traped");
+           },
+           onLongPress: (){
+             print("OnLongPresseed");
+           },
+           title: Text('UserName'),
+           subtitle: Text('Designation'),
+           leading: Icon(Icons.person,size: 40,),
+           trailing: Icon(
+             Icons.arrow_right_alt
+           ),
+           tileColor: Colors.red.withOpacity(0.3),
+           contentPadding: EdgeInsets.symmetric(horizontal: 16),
+         ),
+
+         Wrap(
+           alignment: WrapAlignment.spaceBetween,
+           spacing: 20,
+           children: [
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             ),
+             ElevatedButton(
+                 onPressed: (){
+                   print(_emailTextEditorController.text);
+                   _emailTextEditorController.clear();
+                 },
+                 child:Text('Submit')
+             )
+           ],
+         )
 
 
-         ],
-       ),
-     ) ,
+       ],
+     ),
 
 
    );
