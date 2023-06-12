@@ -74,9 +74,9 @@ class HomeActivity extends StatelessWidget {
 
       ),
       body: Center(
-
+        
         child:
-        /*
+            /*
              ListView.builder(
           itemCount: students.length,
           itemBuilder: (BuildContext context, int index) {
@@ -101,13 +101,13 @@ class HomeActivity extends StatelessWidget {
 
              */
 
-        SingleChildScrollView(
-          child: ListView.separated(
-            primary: false,
-            shrinkWrap: true,
+            SingleChildScrollView(
+              child: ListView.separated(
+                primary: false,
+                shrinkWrap: true,
 
-            itemCount: students.length,
-            itemBuilder: (BuildContext context, int index) {
+          itemCount: students.length,
+          itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
                   ListTile(
@@ -116,18 +116,18 @@ class HomeActivity extends StatelessWidget {
 
                 ],
               );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Divider(
+          },
+          separatorBuilder: (BuildContext context, int index) {
+           return Divider(
                 height: 0,
                 color: Colors.green,
               );
-            },
+          },
 
-          ),
-        )
+        ),
+            )
 
-        /*
+            /*
             ListView.separated(
 
           itemCount: university.length,
@@ -152,7 +152,7 @@ class HomeActivity extends StatelessWidget {
         ),
             */
 
-        /*
+          /*
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
