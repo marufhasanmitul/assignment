@@ -1,3 +1,4 @@
+import 'package:assignment/counter_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,201 +14,110 @@ class myApp extends StatelessWidget {
       darkTheme: ThemeData(primarySwatch: Colors.cyan),
       color: Colors.green,
       debugShowCheckedModeBanner: false,
-      home: HomeActivity(),
+      home: CounterScreen(),
     );
   }
 }
 
 class HomeActivity extends StatelessWidget {
 
-  List<String> students=[
-    'Maruf',
-    'Rofiq',
-    'shorfiq',
-    'Jobbir',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-    'Rayhan',
-  ];
 
-  Map<int,String>university={
-    1 : 'BUTE',
-    2 : 'DU',
-    3 : 'NSU',
-    4 : 'IUB',
-    5 : 'RUET',
-    6 : 'Sout',
-  };
+      String welcomeMessage="Hello";
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('This is a Flutter App'),
+        title: Text('Statless'),
         backgroundColor: Colors.blue,
         elevation: 10,
-        centerTitle:true,
         actions: [
           IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.notifications)),
-          IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.person)),
-          IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.home)),
+              onPressed: (){
+
+              },
+              icon: Icon(Icons.shopping_cart)),
         ],
 
       ),
-      body: Center(
 
-        child:
-        /*
-             ListView.builder(
-          itemCount: students.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-                children: [
-                  ListTile(
-                  title: Text(students[index]),
-                  //subtitle: Text("This is a Subtitle"),
-                  //leading: Text('This is a leading'),
-                  //tileColor: Colors.grey,
-
-                  ),
-                  Divider(
-                    height: 0,
-                    color: Colors.black,
-                  )
-                ],
-              );
+      body: Center(child: Text(welcomeMessage,style: TextStyle(fontSize: 25,fontWeight:FontWeight.bold),)),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: (){
+            welcomeMessage='Hi';
+            print(welcomeMessage);
           },
-
-        ),
-
-             */
-
-        SingleChildScrollView(
-          child: ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-
-            itemCount: students.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(students[index]),
-                  ),
-
-                ],
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Divider(
-                height: 0,
-                color: Colors.green,
-              );
-            },
-
-          ),
-        )
-
-        /*
-            ListView.separated(
-
-          itemCount: university.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                ListTile(
-                  title: Text(university.values.elementAt(index).toString()),
-                  subtitle: Text(university.keys.elementAt(index).toString()),
-                ),
-
-              ],
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-           return Divider(
-              height: 0,
-              color: Colors.green,
-            );
-          },
-
-        ),
-            */
-
-        /*
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-           Stack(
-             children: [
-               Container(
-                 width: 100,
-                 height: 100,
-                 color: Colors.green,
-                 alignment: Alignment.bottomCenter,
-               ),
-               Container(
-                 width: 50,
-                 height: 50,
-                 color: Colors.purple,
-               ),
-               Positioned(
-                 bottom: 0,
-                 right: 10,
-                 top: 10,
-                 left: 10,
-                 child: Container(
-                   width: 20,
-                   height: 20,
-                   color: Colors.black,
-                 ),
-               ),
-               Positioned.fill(
-                   child:
-                   Align(
-                       alignment: Alignment.bottomCenter,
-                       child: Text('Hellow',style: TextStyle(color: Colors.white),)
-                   )
-               )
-             ],
-           )
-
-
-
-
-
-
-
-          ],
-        )
-        */
-
-
-        ,
-
-
+          label: Text('Change Text')
       ),
+
+
 
     );
 
 
   }
+
+
+
 }
+///IntroPart /Widget
+class GoodScreen extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    print("Calling Stape:1");
+    return _GoodScreenState();
+  }
+}
+///widget Part
+class _GoodScreenState extends State<GoodScreen>{
+  String welcomeMessage="Hi";
+
+  @override
+  void initState() {
+    super.initState();
+    print("Calling Stape-2");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("Calling Stape-3");
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Statless'),
+        backgroundColor: Colors.blue,
+        elevation: 10,
+        actions: [
+          IconButton(
+              onPressed: (){
+
+              },
+              icon: Icon(Icons.shopping_cart)),
+        ],
+
+      ),
+
+      body: Center(child: Text(welcomeMessage,style: TextStyle(fontSize: 25,fontWeight:FontWeight.bold),)),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: (){
+            welcomeMessage=welcomeMessage=='Hi' ? 'Hello': 'Hi';
+            print(welcomeMessage);
+            setState(() {
+
+            });
+          },
+          label: Text('Change Text')
+      ),
+    );
+  }
+}
+
+
+
