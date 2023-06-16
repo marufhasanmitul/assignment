@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:assignment/Style.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const myApp());
+void main(){
+  runApp(myApp());
 }
-
-class myApp extends StatelessWidget {
-  const myApp({super.key});
-
+class myApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,59 +14,84 @@ class myApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return HomepageUI();
+   return HomePageUI();
   }
 }
 
-class HomepageUI extends State<HomePage> {
-  int countNumber = 0;
+class HomePageUI extends State<HomePage>{
+
+  Map<String,String> FromValue={
+    "Num1":"",
+    "Num2":"",
+    "Num3":""
+
+  };
+  double SUM = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    MyInputChange(InputKey,InputValue){
+      setState(() {
+        FromValue.update(InputKey, (value) =>InputValue);
+      });
+
+    }
+
+    addAllNumber(){
+      double SUM =FromValue['num1']!+ FromValue['num2']!+ FromValue['num3']!;
+    }
+
+
+
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter App'),
+        title: Text('Sum App'),
       ),
-      body: Center(
-        child: Text(
-          countNumber.toString(),
-          style: TextStyle(fontSize: 30),
+      body: Padding(
+        padding: EdgeInsets.all(30),
+        child: Column(
+          children: [
+
+            Center(child: Text(SUM,style: HeadTextStyle()),),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: (value){
+                MyInputChange("Num1",value);
+              },
+              decoration:applyStyle("First Name"),
+            ),
+            SizedBox(height: 10),
+            TextField(
+                onChanged: (value){
+                  MyInputChange("Num2",value);
+                },
+                decoration:applyStyle("Second Numbar")
+
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              countNumber = countNumber + 1;
-              setState(() {});
-            },
-            child: Icon(Icons.add),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              countNumber = countNumber - 1;
-              setState(() {});
-            },
-            child: Icon(Icons.remove),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              countNumber = 0;
-              setState(() {});
-            },
-            child: Icon(Icons.clear),
-          ),
-        ],
+            SizedBox(height: 10),
+            TextField(
+                onChanged: (value){
+                  MyInputChange("Num3",value);
+                },
+                decoration:applyStyle("Third Numbar")
+
+            ),
+            SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              child: ElevatedButton(
+                  onPressed:(){},
+                  child: Text('Add'),
+                  style:buttonStyle(),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
