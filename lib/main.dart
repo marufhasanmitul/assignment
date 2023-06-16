@@ -1,4 +1,4 @@
-import 'package:assignment/Style.dart';
+
 import 'package:flutter/material.dart';
 
 void main(){
@@ -14,83 +14,43 @@ class myApp extends StatelessWidget{
   }
 }
 
-class HomePage extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() {
-   return HomePageUI();
-  }
-}
-
-class HomePageUI extends State<HomePage>{
-
-  Map<String,String> FromValue={
-    "Num1":"",
-    "Num2":"",
-    "Num3":""
-
-  };
-  double SUM = 0;
-
-
+class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    MyInputChange(InputKey,InputValue){
-      setState(() {
-        FromValue.update(InputKey, (value) =>InputValue);
-      });
-
-    }
-
-    addAllNumber(){
-      double SUM =FromValue['num1']!+ FromValue['num2']!+ FromValue['num3']!;
-    }
-
-
-
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sum App'),
+        title: Text('Home'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(30),
-        child: Column(
-          children: [
-
-            Center(child: Text(SUM,style: HeadTextStyle()),),
-            SizedBox(height: 10),
-            TextField(
-              onChanged: (value){
-                MyInputChange("Num1",value);
-              },
-              decoration:applyStyle("First Name"),
-            ),
-            SizedBox(height: 10),
-            TextField(
-                onChanged: (value){
-                  MyInputChange("Num2",value);
-                },
-                decoration:applyStyle("Second Numbar")
-
-        ),
-            SizedBox(height: 10),
-            TextField(
-                onChanged: (value){
-                  MyInputChange("Num3",value);
-                },
-                decoration:applyStyle("Third Numbar")
-
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              child: ElevatedButton(
-                  onPressed:(){},
-                  child: Text('Add'),
-                  style:buttonStyle(),
+      body:
+      Container(
+        height: 100,
+        child:
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                  child: Container(
+                    color: Colors.red,
+                  ),
+                  flex:1 ,
               ),
-            )
-          ],
+              SizedBox(width: 10),
+              Expanded(
+                  child: Container(
+                    color: Colors.yellow,
+                  ),
+                  flex: 3,
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                  child: Container(
+                    color: Colors.green,
+                  ),
+                  flex: 1,
+              ),
+            ],
+          ),
         ),
       ),
     );
