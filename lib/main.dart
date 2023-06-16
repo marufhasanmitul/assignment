@@ -22,37 +22,75 @@ class HomePage extends StatelessWidget{
         title: Text('Home'),
       ),
       body:
-      Container(
-        height: 100,
-        child:
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Container(
-                    color: Colors.red,
+      Column(
+        children: [
+          Container(
+            height: 100,
+            child:
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:
+              Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                        color: Colors.red,
+                      ),
+                      flex:1 ,
                   ),
-                  flex:1 ,
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                  child: Container(
-                    color: Colors.yellow,
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: Container(
+                        color: Colors.yellow,
+                      ),
+                      flex: 3,
                   ),
-                  flex: 3,
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                  child: Container(
-                    color: Colors.green,
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: Container(
+                        color: Colors.green,
+                      ),
+                      flex: 1,
                   ),
-                  flex: 1,
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Container(
+            height: 100,
+            child:
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:
+              Row(
+                children: [
+                  Flexible(
+                    child: Container(
+                      color: Colors.red,
+                    ),
+                    flex:1 ,
+                  ),
+                  SizedBox(width: 10),
+                  Flexible(
+                    child: Container(
+                      color: Colors.yellow,
+                    ),
+                    flex: 3,
+                  ),
+                  SizedBox(width: 10),
+                  Flexible(
+                    child: Container(
+                      color: Colors.green,
+                    ),
+                    flex: 1,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
+
     );
   }
 }
