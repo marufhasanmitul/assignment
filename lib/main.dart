@@ -1,4 +1,5 @@
 
+import 'package:assignment/style.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -17,79 +18,29 @@ class myApp extends StatelessWidget{
 class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+
+    //Device Screen Size
+    var size=MediaQuery.of(context).size;
+    var width=MediaQuery.of(context).size.width;
+    var height=MediaQuery.of(context).size.height;
+    var orentation=MediaQuery.of(context).orientation;//Screen orientation
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
       ),
       body:
-      Column(
-        children: [
-          Container(
-            height: 100,
-            child:
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child:
-              Row(
-                children: [
-                  Expanded(
-                      child: Container(
-                        color: Colors.red,
-                      ),
-                      flex:1 ,
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                      child: Container(
-                        color: Colors.yellow,
-                      ),
-                      flex: 3,
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                      child: Container(
-                        color: Colors.green,
-                      ),
-                      flex: 1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 100,
-            child:
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child:
-              Row(
-                children: [
-                  Flexible(
-                    child: Container(
-                      color: Colors.red,
-                    ),
-                    flex:1 ,
-                  ),
-                  SizedBox(width: 10),
-                  Flexible(
-                    child: Container(
-                      color: Colors.yellow,
-                    ),
-                    flex: 3,
-                  ),
-                  SizedBox(width: 10),
-                  Flexible(
-                    child: Container(
-                      color: Colors.green,
-                    ),
-                    flex: 1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Hellow Maruf ',style: HeadLine(context),),
+
+          ],
+        ),
       ),
+
 
     );
   }
