@@ -1,4 +1,4 @@
-Some Widget & Flutter Widget Link
+Some Widget & Flutter Figma Theme Link
 https://www.figma.com/file/daoA503pCOw3uhNu5fl7V1/flutter-all-widgets?node-id=0%3A1
 
 1. https://askbefore-38f79.web.app/#/
