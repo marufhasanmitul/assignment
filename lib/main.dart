@@ -1,4 +1,4 @@
-
+import 'package:responsive_grid/responsive_grid.dart';
 import 'package:assignment/style.dart';
 import 'package:flutter/material.dart';
 
@@ -19,12 +19,6 @@ class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    //Device Screen Size
-    var size=MediaQuery.of(context).size;
-    var width=MediaQuery.of(context).size.width;
-    var height=MediaQuery.of(context).size.height;
-    var orentation=MediaQuery.of(context).orientation;//Screen orientation
-
 
     return Scaffold(
       appBar: AppBar(
@@ -32,14 +26,30 @@ class HomePage extends StatelessWidget{
       ),
       body:
       Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ResponsiveGridRow(
           children: [
-            Text('Hellow Maruf ',style: HeadLine(context),),
-
+            ResponsiveGridCol(
+              lg: 12,
+                child: Container(
+                  height:100 ,
+                  color: Colors.orange,
+                )
+            ),
+            ResponsiveGridCol(
+                xl: 4,
+                lg: 6,
+                md:8 ,
+                sm: 9,
+                xs: 12,
+                child: Container(
+                  height:100 ,
+                  color: Colors.green,
+                )
+            ),
           ],
         ),
       ),
+
 
 
     );
