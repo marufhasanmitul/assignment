@@ -1,10 +1,4 @@
-
-import 'package:assignment/style.dart';
 import 'package:flutter/material.dart';
-import 'Page1.dart';
-import 'Page2.dart';
-import 'Page3.dart';
-
 void main(){
   runApp(myApp());
 }
@@ -18,34 +12,57 @@ class myApp extends StatelessWidget{
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  PageController _controller=PageController(
-    initialPage: 0
-  );
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        scrollDirection: Axis.vertical,
-        controller: _controller,
-        children: [
-          Page1(),
-          Page2(),
-          Page3(),
-        ],
+      appBar: AppBar(
+        title: Text('Stack'),
       ),
+      body:
+      Center(
+        child: SizedBox(
+          width: 300,
+          height: 300,
+          child: Center(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  width: 300,
+                  height: 300,
+                  color: Colors.red,
+                  padding: EdgeInsets.all(15),
+                  alignment: Alignment.bottomRight,
+                  child:Text(
+                    'One',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ), //Container
+                Positioned(
+                  top: 80,
+                  left: 80,
+                  child: Container(
+                    width: 250,
+                    height: 250,
+                    color: Colors.black,
+                  ),
+                ), //Container
+                Positioned(
+                  top: 20,
+                  left: 20,
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.purple,
+                  ),
+                ), //Container
+              ], //<Widget>[]
+            ), //Stack
+          ), //Center
+        ), //SizedBox
+      )
     );
   }
 }
