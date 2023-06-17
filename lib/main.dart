@@ -1,6 +1,9 @@
-import 'package:responsive_grid/responsive_grid.dart';
+
 import 'package:assignment/style.dart';
 import 'package:flutter/material.dart';
+import 'Page1.dart';
+import 'Page2.dart';
+import 'Page3.dart';
 
 void main(){
   runApp(myApp());
@@ -15,43 +18,34 @@ class myApp extends StatelessWidget{
   }
 }
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  PageController _controller=PageController(
+    initialPage: 0
+  );
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
+      body: PageView(
+        scrollDirection: Axis.vertical,
+        controller: _controller,
+        children: [
+          Page1(),
+          Page2(),
+          Page3(),
+        ],
       ),
-      body:
-      Center(
-        child: ResponsiveGridRow(
-          children: [
-            ResponsiveGridCol(
-              lg: 12,
-                child: Container(
-                  height:100 ,
-                  color: Colors.orange,
-                )
-            ),
-            ResponsiveGridCol(
-                xl: 4,
-                lg: 6,
-                md:8 ,
-                sm: 9,
-                xs: 12,
-                child: Container(
-                  height:100 ,
-                  color: Colors.green,
-                )
-            ),
-          ],
-        ),
-      ),
-
-
-
     );
   }
 }
