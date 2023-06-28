@@ -1,16 +1,11 @@
-# assignment
+01.Login & SignUp Page Design
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+![frontPage](https://github.com/marufhasanmitul/assignment/assets/87512480/4b2f9e2b-f879-49af-901f-d1cb9944be69)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![reg](https://github.com/marufhasanmitul/assignment/assets/87512480/7c7100da-cda4-41f3-a6a3-d9ff51d08c87)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+![Login](https://github.com/marufhasanmitul/assignment/assets/87512480/7775eef4-646a-49d4-a685-923cfdea25e2)
