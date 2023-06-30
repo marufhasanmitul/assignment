@@ -1,3 +1,5 @@
+import 'package:assignment/Laptop.dart';
+import 'package:assignment/Mobile.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
+
           appBar: AppBar(
             backgroundColor: Colors.white,
             toolbarHeight: 100,
@@ -49,10 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: "All",
                 ),
                 Tab(
-                  text: "Expance",
+                  text: "Moblie",
                 ),
                 Tab(
-                  text: "Fund",
+                  text: "Laptop",
                 ),
               ],
             ),
@@ -61,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
             children: [
               AllProduct(),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
+              Mobile(),
+              Laptop(),
             ],
           ),
 
