@@ -5,10 +5,10 @@ class AllProduct extends StatefulWidget {
   const AllProduct({Key? key}) : super(key: key);
 
   @override
-  State<AllProduct> createState() => _AllProductState();
+  State<AllProduct> createState() => _HomeScreenState();
 }
 
-class _AllProductState extends State<AllProduct> {
+class _HomeScreenState extends State<AllProduct> {
 
   List<Map<String,String>>productList=[
     {"title":"iPhone9","price":"549","img":"https://i.dummyjson.com/data/products/1/thumbnail.jpg"},
@@ -24,52 +24,53 @@ class _AllProductState extends State<AllProduct> {
   ];
 
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child:Container(
-          padding: EdgeInsets.symmetric(horizontal: 30 ,vertical: 10),
-          child: GridView.builder(
-              itemCount:productList.length ,
-              gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+            itemCount: 10,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 4.0,
-                mainAxisSpacing: 4.0
-              ) ,
-              itemBuilder: (context,index){
-                return Card(
-                  semanticContainer: true,
-
-                  elevation: 5,
-                  child: Column(
-                    children: [
-                      Image.network(productList[index]["img"]!,fit: BoxFit.fill,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(productList[index]["title"]!),
-                                Text(productList[index]["price"]!)
-                              ],
-                            ),
+                mainAxisSpacing: 2,
+                crossAxisSpacing: 2
+            ),
+            itemBuilder: (context,index){
+              return Card(
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Image.network(productList[index]["img"]!,fit: BoxFit.cover,),
+                    ),
+                     Expanded(
+                        flex: 1,
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  flex:1 ,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(productList[index]["title"]!,overflow: TextOverflow.ellipsis,maxLines: 1,),
+                                      Text("\$ "+productList[index]["price"]!)
+                                    ],
+                                  )
+                              ),
+                              Expanded(flex :1,child: Icon(CupertinoIcons.shopping_cart))
+                            ],
                           ),
-                          Icon(Icons.shopping_bag_outlined)
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              }
-          ),
-        ) ,
+                        )
+                    )
+                  ],
+                ),
+              );
+            }
+        ),
       ),
     );
   }
