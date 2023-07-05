@@ -1,181 +1,95 @@
-import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main(){
-  runApp(const myApp());
+  runApp( MyApp());
 }
 
-class myApp extends StatelessWidget {
-  const myApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      color: Colors.white,
-      home: HomeScreen(),
-    );
-  }
+class MyApp extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    title: 'Hero ListView',
+    debugShowCheckedModeBanner: false,
+    theme:
+    ThemeData(primarySwatch: Colors.blue, platform: TargetPlatform.iOS),
+    home: FirstPage(),
+  );
+}
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-    final double coverHeignt = 280;
-    final double profileHeight = 144;
+class FirstPage extends StatelessWidget {
+  const FirstPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.center,
-                    children:[
-                      Container(
-                        height: coverHeignt,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage("https://cdn.rabbil.com/photos/images/2022/12/27/flutterX1.png"),
-                            fit: BoxFit.cover
-                          )
-                        ),
-                        child: ClipRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 2,
-                              sigmaY: 2
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              color:Colors.grey.withOpacity(0.5) ,
-                            ),
-                          ),
-                        ),
-
-                      ),
-                      Positioned(
-                        top: coverHeignt-profileHeight/2,
-                        child: Container(
-                          height: profileHeight,
-                          child: CircleAvatar(
-                            radius: profileHeight/2,
-                            backgroundColor: Colors.grey,
-                            backgroundImage: NetworkImage("https://cdn.rabbil.com/photos/images/2022/11/04/rabbilVai.png"),
-                          ),
-                        ),
-                      )
-                      ]
-                  ),
-                  SizedBox(height: profileHeight/2+18),
-                  Text("RABBIL HASAN",style: headerTextStyle(),),
-                  SizedBox(height: 5),
-                  Text("All in One Developer"),
-                  SizedBox(height: 20),
-                  Wrap(
-                    spacing: 10,
-
-                    children: [
-                        SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                            child: Icon(FontAwesomeIcons.facebook,size: 35),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                            child: Icon(FontAwesomeIcons.github,size: 35),
-                          ),
-                        ),
-                        SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          child: Icon(FontAwesomeIcons.twitter,size: 35),
-                        ),
-                      ),
-                        SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          child: Icon(FontAwesomeIcons.linkedin,size: 35),
-                        ),
-                      ),
-
-
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Wrap(
-                    spacing: 30,
-                    children: [
-                      Column(
-                        children: [
-                          Text("300",style: follingTextStyle()),
-                          Text("Projects",style: follingTextStyle(),),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text("3k",style: follingTextStyle()),
-                          Text("Following",style: follingTextStyle()),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text("100k",style: follingTextStyle()),
-                          Text("Followers",style: follingTextStyle()),
-                        ],
-                      ),
-                    ],
-                  ),
-                  
-
-                ],
+      appBar: AppBar(title: Text("Hero ListView")),
+      body: ListView.builder(
+        itemCount: _images.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text('Tile $index'),
+            leading: Hero(
+              tag: index,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Image.network(_images[index],
+                    width: 100, fit: BoxFit.cover),
               ),
             ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              margin:EdgeInsets.symmetric(horizontal: 55) ,
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("About",style: headerTextStyle(),),
-                  SizedBox(height: 10,),
-                  Text("Learn With Rabbil is a top leading edutech platform for software development. We provide online courses for majors in mobile & web development. Research & development, teaching, and community leading is our vision . Our specialty is industry-oriented teaching processes, guidelines, study plans, and classes with resourceful content. Learn confidently with us software industry needs quality developers.",style: TextStyle(fontSize: 18,wordSpacing: 3),)
-                ],
-              ),
-            )
-          ],
-        ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SecondPage(heroTag: index)));
+            },
+          );
+        },
       ),
     );
   }
 }
+
+class SecondPage extends StatelessWidget {
+  final int heroTag;
+  const SecondPage({required this.heroTag});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Hero ListView Page 2")),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: Hero(
+                tag: heroTag,
+                child: Image.network(_images[heroTag]),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              "Content goes here",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+final List<String> _images = [
+  'https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  'https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  'https://images.pexels.com/photos/273935/pexels-photo-273935.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  'https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  'https://images.pexels.com/photos/462024/pexels-photo-462024.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+];
+
+
+
 
 
