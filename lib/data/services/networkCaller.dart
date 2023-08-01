@@ -9,14 +9,22 @@ import 'package:assignment/data/Model/responseObject.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {
-  Future<NetworkResponse> getRequest(String url) async {
+   Future<NetworkResponse> getRequest(String url) async {
     try {
-      Response response = await get(Uri.parse(url));
+      Response response = await get(Uri.parse(url),headers: {
+        'token': AuthUtility.userinfo.token.toString()
+      });
+
+
 
       if (response.statusCode == 200) {
         return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
-      } else {
+      }else if(response.statusCode == 401){
+        gotoLogin();
+      }
+
+      else {
         return NetworkResponse(false, response.statusCode, null);
       }
     } catch (e) {
@@ -35,7 +43,7 @@ class NetworkCaller {
           },
           body: jsonEncode(body));
       log(response.statusCode.toString());
-      log(response.body);
+      log(response.body.toString());
 
       if (response.statusCode == 200) {
         return NetworkResponse(
@@ -54,7 +62,7 @@ class NetworkCaller {
   void gotoLogin() async{
     await AuthUtility.clearUserInfo();
     Navigator.pushAndRemoveUntil(
-        TaskManager.globalKey.currentState!.context,
+        TaskManager.globalKey.currentContext!,
         MaterialPageRoute(builder: (context) => LoginScreen()),
         (route) => false);
   }

@@ -45,10 +45,10 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
         showSelectedLabels: true,
         selectedItemColor: Colors.green,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.account_tree), label: "New Task"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_tree),label: "inprogress"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_tree),label: "cncel"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_tree),label: "completed"),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "New Task"),
+          BottomNavigationBarItem(icon: Icon(Icons.access_time_rounded),label: "InProgress"),
+          BottomNavigationBarItem(icon: Icon(Icons.cancel_outlined),label: "Cancel"),
+          BottomNavigationBarItem(icon: Icon(Icons.check_circle_outlined),label: "Completed"),
         ],
       ),
     );

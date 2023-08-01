@@ -1,12 +1,99 @@
+import 'dart:developer';
+
+import 'package:assignment/data/Model/responseObject.dart';
+import 'package:assignment/data/Model/summery_count_model.dart';
+import 'package:assignment/data/services/networkCaller.dart';
+import 'package:assignment/ui/utils/urls.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/Model/task_list_model.dart';
 import '../widget/summeryCard.dart';
 import '../widget/taskWidgetList.dart';
 import '../widget/userProfileBanner.dart';
 import 'addnewTaskScreen.dart';
 
-class NewTaskScreen extends StatelessWidget {
+class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({Key? key}) : super(key: key);
+
+  @override
+  State<NewTaskScreen> createState() => _NewTaskScreenState();
+}
+
+class _NewTaskScreenState extends State<NewTaskScreen> {
+
+  bool _getCountSummeryInProgress=false,_getNewTaskInProgress = false;
+
+  SummeryCountModel _summeryCountModel=SummeryCountModel();
+  TaskListModel _taskListModel = TaskListModel();
+  Map<String,dynamic> counterData={};
+
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    //after Widget Binding
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getCountSummery();
+      getNewTasks();
+    });
+  }
+
+  Future<void> getCountSummery()async{
+     _getCountSummeryInProgress=true;
+     if(mounted){
+       setState(() {});
+     }
+
+     final NetworkResponse response=await NetworkCaller().getRequest(Urls.taskStatusCount);
+
+     _summeryCountModel = SummeryCountModel.fromJson(response.body!);
+
+
+     if(response.isSuccess){
+
+
+
+
+
+
+     }else{
+       if(mounted){
+         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Summery Data get Failed')));
+       }
+     }
+
+     _getCountSummeryInProgress=false;
+     if(mounted){
+       setState(() {});
+     }
+
+
+  }
+
+  Future<void> getNewTasks() async {
+    _getNewTaskInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    final NetworkResponse response =
+    await NetworkCaller().getRequest(Urls.newTasks);
+    if (response.isSuccess) {
+      _taskListModel = TaskListModel.fromJson(response.body!) ;
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Task data failed')));
+      }
+    }
+    _getNewTaskInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +104,8 @@ class NewTaskScreen extends StatelessWidget {
             UserProfileBanner(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
+              child:_getCountSummeryInProgress? LinearProgressIndicator():
+              Row(
                 children: [
                   Expanded(
                     child: SummeryCard(
@@ -47,18 +135,30 @@ class NewTaskScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.separated(
-                      itemCount: 20,
-                      itemBuilder: (context,index){
-                        return TaskListWidget();
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Divider(
-                          height: 4,
-                        );
-                      },
+
+                child: RefreshIndicator(
+                  onRefresh: ()async{
+                    getNewTasks();
+                  },
+                  child: _getNewTaskInProgress? Center(
+                    child: CircularProgressIndicator(),
+                  ):
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.separated(
+                        itemCount: _taskListModel.data?.length ?? 0,
+                        itemBuilder: (context,index){
+                          return TaskListWidget(
+                            data: _taskListModel.data![index],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return Divider(
+                            height: 4,
+                          );
+                        },
+                    ),
                   ),
                 )
             )
